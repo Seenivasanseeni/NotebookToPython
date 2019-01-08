@@ -1,4 +1,3 @@
-import bs4 as soup
 import json
 
 def readNoteBook(path):
@@ -7,6 +6,7 @@ def readNoteBook(path):
 
 def appendToSouce(source,code):
         return source + code
+
 def convertToPython(notebook):
     pythonSource=""
     for cell in notebook["cells"]:
@@ -15,9 +15,14 @@ def convertToPython(notebook):
                 pythonSource = appendToSouce(pythonSource,code)
     return pythonSource
 
-def test():
-    notebook=readNoteBook('LinearRegression.ipynb')
-    print(convertToPython(notebook))
+def saveAndConvert(notebookPath):
+    notebook = readNoteBook(notebookPath)
+    sourceCode = convertToPython(notebook)
+    file = open(notebookPath+".py","w")
+    file.write(sourceCode)
+    file.close()
 
+def test():
+    saveAndConvert('LinearRegression.ipynb')
 
 test()
