@@ -7,11 +7,17 @@ def readNoteBook(path):
 def appendToSouce(source,code):
         return source + code
 
+def combineCode(codeArray):
+    return "".join(codeArray) + "\n"
+
+def makeComment(comment):
+    return comment
+
 def convertToPython(notebook):
     pythonSource=""
     for cell in notebook["cells"]:
             if cell["cell_type"]=="code":
-                code=" ".join(cell["source"]) + "\n"
+                code=combineCode(cell["source"])
                 pythonSource = appendToSouce(pythonSource,code)
     return pythonSource
 
