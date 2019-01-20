@@ -31,4 +31,8 @@ def saveAndConvert(notebookPath):
 def test():
     saveAndConvert('LinearRegression.ipynb')
 
-test()
+def drive():
+    import sys
+    filename=sys.argv[1]
+    saveAndConvert(filename)
+drive()
